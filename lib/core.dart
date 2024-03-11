@@ -19,3 +19,5 @@ export 'package:submission_dicoding/screens/category_screen.dart';
 export 'package:submission_dicoding/screens/favorite_screen.dart';
 export 'package:submission_dicoding/screens/popular_screen.dart';
 export 'package:submission_dicoding/screens/search_screen.dart';
+export 'package:submission_dicoding/models/favorited.dart';
+export 'package:submission_dicoding/models/popular.dart';

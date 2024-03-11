@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
 
   List<Widget> _buildScreens() => [
         const HomeScreen(),
-        const Center(child: Text('Screen2'),),
+        const FavoriteScreen(),
         const ProfileScreen(),
       ];
 

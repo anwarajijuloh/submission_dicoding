@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:submission_dicoding/models/favorited.dart';
 import 'package:submission_dicoding/models/popular.dart';
 
 import '../core.dart';
 
 final User recentUser = User(
     userId: 'user1',
-    userName: 'Jessica',
-    userImage: 'https://randomuser.me/api/portraits/women/24.jpg');
+    userName: 'Anwar Aji',
+    userImage: 'https://randomuser.me/api/portraits/men/24.jpg');
 
 final List<Categories> categories = [
   Categories(
@@ -207,4 +208,13 @@ List<Popular> populars = [
   Popular(popId: 'pop_7', destId: destinations[13]),
   Popular(popId: 'pop_8', destId: destinations[10]),
   Popular(popId: 'pop_9', destId: destinations[5]),
+];
+
+List<Favorited> favorites = [
+  Favorited(recentUser, favId: 'fav_1', desId: destinations[1], isFavorited: true),
+  Favorited(recentUser, favId: 'fav_2', desId: destinations[5], isFavorited: true),
+  Favorited(recentUser, favId: 'fav_3', desId: destinations[8], isFavorited: true),
+  Favorited(recentUser, favId: 'fav_4', desId: destinations[3], isFavorited: true),
+  Favorited(recentUser, favId: 'fav_5', desId: destinations[12], isFavorited: true),
+  Favorited(recentUser, favId: 'fav_6', desId: destinations[9], isFavorited: true),
 ];

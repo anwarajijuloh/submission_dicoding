@@ -60,15 +60,16 @@ class DestinationScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                    bottom: 20,
-                    left: 40,
-                    child: Text(
-                      'Choose Your Favorite\n${categoryId.categoryName.toString()}',
-                      style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600),
-                    ))
+                  bottom: 20,
+                  left: 40,
+                  child: Text(
+                    'Choose Your Favorite\n${categoryId.categoryName.toString()}',
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ),
               ],
             ),
           ),
@@ -77,6 +78,7 @@ class DestinationScreen extends StatelessWidget {
               itemCount: destination.length,
               itemBuilder: (ctx, i) {
                 return CustomStackDestination(
+                  desId: destination[i],
                   name: destination[i].desName,
                   place: destination[i].place,
                   rate: destination[i].desRating.toString(),
@@ -90,5 +92,3 @@ class DestinationScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:submission_dicoding/core.dart';
 
-class DetailDestinationScreen extends StatelessWidget {
+class DetailDestinationScreen extends StatefulWidget {
   final Destionation desId;
   const DetailDestinationScreen({super.key, required this.desId});
 
   @override
+  State<DetailDestinationScreen> createState() => _DetailDestinationScreenState();
+}
+
+class _DetailDestinationScreenState extends State<DetailDestinationScreen> {
+  final List<Favorited> myfavorited = favorites;
+  bool isFavo = false;
+  @override
   Widget build(BuildContext context) {
+    for(Favorited fav in myfavorited){
+      if(fav.desId.desId == widget.desId.desId){
+        if(fav.isFavorited!){
+          isFavo = true;
+        }
+      }
+    }
     return Scaffold(
       body: Stack(
         children: [
           SizedBox(
             height: 360,
             child: Image(
-              image: AssetImage(desId.desImage),
+              image: AssetImage(widget.desId.desImage),
               fit: BoxFit.cover,
             ),
           ),
@@ -50,14 +64,14 @@ class DetailDestinationScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _TitleDestination(
-                      title: desId.desName,
-                      place: desId.place,
-                      price: desId.price,
+                      title: widget.desId.desName,
+                      place: widget.desId.place,
+                      price: widget.desId.price,
                     ),
                     _InfoDestination(
-                      rating: desId.desRating,
-                      suhu: desId.suhu,
-                      depature: desId.depature,
+                      rating: widget.desId.desRating,
+                      suhu: widget.desId.suhu,
+                      depature: widget.desId.depature,
                     ),
                     const SizedBox(height: 20),
                     Container(
@@ -71,8 +85,8 @@ class DetailDestinationScreen extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 22),
                       child: Text(
-                        desId.description,
-                        maxLines: 8,
+                        widget.desId.description,
+                        maxLines: 5,
                         textAlign: TextAlign.justify,
                         style: const TextStyle(
                             fontWeight: FontWeight.w400, fontSize: 12, overflow: TextOverflow.ellipsis, ),
@@ -87,18 +101,23 @@ class DetailDestinationScreen extends StatelessWidget {
                           backgroundColor:
                               MaterialStatePropertyAll(Palette.primaryGreen),
                         ),
-                        onPressed: () {},
-                        child: const Row(
+                        onPressed: () {
+                          isFavo = true;
+                          setState(() {
+
+                          });
+                        },
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.favorite_outline,
+                            Icon(isFavo ?
+                              Icons.favorite : Icons.favorite_outline,
                               color: Palette.secondaryGrey1,
                             ),
-                            SizedBox(width: 10),
-                            Text(
-                              'Add Favorite',
-                              style: TextStyle(color: Palette.secondaryGrey1),
+                            const SizedBox(width: 10),
+                            Text(isFavo ?
+                              'Favorited' : 'Add Favorited',
+                              style: const TextStyle(color: Palette.secondaryGrey1),
                             ),
                           ],
                         ),

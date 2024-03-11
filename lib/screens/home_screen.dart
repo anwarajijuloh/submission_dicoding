@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../core.dart';
 
@@ -8,6 +9,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User myuser = recentUser;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -22,14 +24,15 @@ class HomeScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(50),
                   child: Image.network(
-                    'https://randomuser.me/api/portraits/women/24.jpg',
+                    myuser.userImage,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              title: const Text(
-                'Hai, Jessica',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              title: Text(
+                'Hai, ${myuser.userName}',
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
               actions: [
                 Container(
@@ -108,20 +111,26 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          TitleActionButton(
-            myAction: () {},
-            myTitle: 'Categories',
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 22),
+              child: Text(
+                'Categories',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            ),
           ),
           const CategoryList(),
           TitleActionButton(
-            myAction: () {},
+            myAction: () {
+              PersistentNavBarNavigator.pushNewScreen(context,
+                  screen: const PopularScreen(), withNavBar: false);
+            },
             myTitle: 'Popular',
           ),
-          PopularList(),
+          const PopularList(),
         ],
       ),
     );
   }
 }
-
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../core.dart';
 class StarterScreen extends StatelessWidget {
@@ -33,7 +34,7 @@ class StarterScreen extends StatelessWidget {
             height: 16,
           ),
           CustomButton(action: () { 
-            Navigator.of(context).pushNamedAndRemoveUntil(HomeScreen.routeName, (route) => false);
+            PersistentNavBarNavigator.pushNewScreen(context, screen: const MainScreen(), withNavBar: false);
            }, name: 'Start',),
           const SizedBox(height: 10),
           TextButton(

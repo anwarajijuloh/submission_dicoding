@@ -2,8 +2,9 @@ import 'package:submission_dicoding/core.dart';
 
 class Favorited{
   final String favId;
-  final List<Destionation> desId;
+  final Destionation desId;
   final User userId;
+  bool? isFavorited = false;
 
-  Favorited({required this.favId, required this.desId, required this.userId});
+  Favorited(this.userId,{required this.favId, required this.desId, this.isFavorited});
 }
