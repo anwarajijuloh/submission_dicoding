@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:submission_dicoding/models/favorited.dart';
-import 'package:submission_dicoding/models/popular.dart';
 
 import '../core.dart';
 

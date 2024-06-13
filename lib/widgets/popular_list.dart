@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:submission_dicoding/core.dart';
-import 'package:submission_dicoding/models/popular.dart';
 
 class PopularList extends StatelessWidget {
   const PopularList({super.key});

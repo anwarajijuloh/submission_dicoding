@@ -130,7 +130,7 @@ class _DetailDestinationScreenState extends State<DetailDestinationScreen> {
         width: MediaQuery.of(context).size.width - 40,
         child: ElevatedButton(
           style: const ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Palette.primaryGreen),
+            backgroundColor: WidgetStatePropertyAll(Palette.primaryGreen),
           ),
           onPressed: () {
             isFavo = true;
