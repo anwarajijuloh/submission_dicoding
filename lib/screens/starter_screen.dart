@@ -12,7 +12,7 @@ class StarterScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset('assets/images/Trip-pana.png'),
+          Expanded(child: Image.asset('assets/images/Trip-pana.png')),
           const Text(
             'Enjoy Your Vacation,\nOnly Here',
             textAlign: TextAlign.center,

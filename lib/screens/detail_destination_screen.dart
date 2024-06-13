@@ -6,7 +6,8 @@ class DetailDestinationScreen extends StatefulWidget {
   const DetailDestinationScreen({super.key, required this.desId});
 
   @override
-  State<DetailDestinationScreen> createState() => _DetailDestinationScreenState();
+  State<DetailDestinationScreen> createState() =>
+      _DetailDestinationScreenState();
 }
 
 class _DetailDestinationScreenState extends State<DetailDestinationScreen> {
@@ -14,54 +15,78 @@ class _DetailDestinationScreenState extends State<DetailDestinationScreen> {
   bool isFavo = false;
   @override
   Widget build(BuildContext context) {
-    for(Favorited fav in myfavorited){
-      if(fav.desId.desId == widget.desId.desId){
-        if(fav.isFavorited!){
+    for (Favorited fav in myfavorited) {
+      if (fav.desId.desId == widget.desId.desId) {
+        if (fav.isFavorited!) {
           isFavo = true;
         }
       }
     }
     return Scaffold(
-      body: Stack(
-        children: [
-          SizedBox(
-            height: 360,
-            child: Image(
-              image: AssetImage(widget.desId.desImage),
-              fit: BoxFit.cover,
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Stack(
+              children: [
+                Container(
+                  height: 400,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(widget.desId.desImage),
+                        fit: BoxFit.cover,),
+                  ),
+                ),
+                Positioned(
+                  top: 50,
+                  left: 25,
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(.5),
+                        borderRadius: BorderRadius.circular(50)),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: const Icon(
+                        Icons.chevron_left_rounded,
+                        size: 34,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        topRight: Radius.circular(15),
+                      ),
+                    ),
+                    child: Container(
+                      width: 10,
+                      height: 6,
+                      margin: const EdgeInsets.only(left: 140, right: 140, top: 10, bottom: 25),
+                      decoration: BoxDecoration(
+                        color: Palette.darkGrey1,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+
+                  ),
+                ),
+              ],
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 50, left: 25),
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(.4),
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left_rounded,
-                    color: Colors.white,
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-              Container(
-                height: 540,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _TitleDestination(
                       title: widget.desId.desName,
@@ -86,49 +111,46 @@ class _DetailDestinationScreenState extends State<DetailDestinationScreen> {
                       margin: const EdgeInsets.symmetric(horizontal: 22),
                       child: Text(
                         widget.desId.description,
-                        maxLines: 5,
                         textAlign: TextAlign.justify,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w400, fontSize: 12, overflow: TextOverflow.ellipsis, ),
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 22),
-                      height: 56,
-                      child: ElevatedButton(
-                        style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Palette.primaryGreen),
-                        ),
-                        onPressed: () {
-                          isFavo = true;
-                          setState(() {
-
-                          });
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(isFavo ?
-                              Icons.favorite : Icons.favorite_outline,
-                              color: Palette.secondaryGrey1,
-                            ),
-                            const SizedBox(width: 10),
-                            Text(isFavo ?
-                              'Favorited' : 'Add Favorited',
-                              style: const TextStyle(color: Palette.secondaryGrey1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
-                ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 11),
+        height: 56,
+        width: MediaQuery.of(context).size.width - 40,
+        child: ElevatedButton(
+          style: const ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(Palette.primaryGreen),
+          ),
+          onPressed: () {
+            isFavo = true;
+            setState(() {});
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                isFavo ? Icons.favorite : Icons.favorite_outline,
+                color: Palette.secondaryGrey1,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                isFavo ? 'Favorited' : 'Add Favorited',
+                style: const TextStyle(color: Palette.secondaryGrey1),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }
