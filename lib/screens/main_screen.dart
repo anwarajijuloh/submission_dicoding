@@ -12,7 +12,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  PersistentTabController _controller = PersistentTabController();
+  PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
   @override
   void initState() {
@@ -60,6 +60,8 @@ class _MainScreenState extends State<MainScreen> {
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
+        confineInSafeArea: true,
+        backgroundColor: Colors.white,
         navBarHeight: 80,
         decoration: NavBarDecoration(
           borderRadius: BorderRadius.circular(10.0),
